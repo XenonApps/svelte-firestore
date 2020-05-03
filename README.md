@@ -9,19 +9,23 @@ To use:
 2. Modify /src/App.svelte to test access to firestore collections
 
 N.B. Note the changes in /rollup.config.js:
-commonjs({
-namedExports: {
-// left-hand side can be an absolute path, a path
-// relative to the current directory, or the name
-// of a module in node_modules
-'node_modules/idb/build/idb.js': ['openDb', 'deleteDb'],
-'node_modules/firebase/dist/index.cjs.js': [
-'initializeApp',
-'firestore',
-],
-'node_modules/firebase/functions/dist/index.esm.js': ['default'],
-},
-}),
+
+```
+   commonjs({
+    namedExports: {
+      // left-hand side can be an absolute path, a path
+      // relative to the current directory, or the name
+      // of a module in node_modules
+      'node_modules/idb/build/idb.js': ['openDb', 'deleteDb'],
+      'node_modules/firebase/dist/index.cjs.js': [
+        'initializeApp',
+        'firestore',
+      ],
+      'node_modules/firebase/functions/dist/index.esm.js': ['default'],
+    },
+  }),
+```
+
 namedExports were added due to compilation errors - don't know why, but this fixed them!!
 
 _Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)_
